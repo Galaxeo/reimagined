@@ -1,0 +1,116 @@
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+@font-face {
+  font-family: 'RodinL';
+  src: url('/RodinL.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RodinM';
+  src: url('/RodinM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+ 
+html, body, #root {
+  font-family: 'RodinL', 'Fira Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.logo {
+  height: auto;
+  width: max(20vw, 200px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  animation: silo-fade 1.5s;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+.largeText {
+  font-family: 'RodinM', 'Fira Sans', sans-serif;
+  font-size: '2rem';
+  align-self: center;
+}
+.title {
+  position: absolute;
+  color: white;
+  top: 10%;
+  left: 50%;
+  text-align: center;
+  font-size: 5rem;
+  z-index: 3;
+  transform: translateX(-50%);
+}
+.title p {
+  transition: opacity 0.5s ease-in-out;
+}
+.keybInfo {
+  top: 10%;
+  left: 50%;
+  z-index: 3;
+  font-size: 3rem;
+  position: fixed;
+  color: white;
+}
+.keybInfo * {
+  position: fixed;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.languageCont {
+  display: flex;
+  flex-direction: row;
+}
