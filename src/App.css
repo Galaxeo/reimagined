@@ -117,13 +117,14 @@ html, body, #root {
 .topMenu {
 /*center on the bottom*/
   position: absolute;
+  inset: 0;
+  margin: auto;
   top: 90%;
-  left: auto;
-  width: 200px;
   height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* gap: 30px; */
   z-index: 3;
 }
 /*Each p element within the menu on highlight will turn white, clickable hover*/
@@ -134,8 +135,8 @@ html, body, #root {
 .topMenuHr {
   position: absolute;
   top: 95%;
-  width: 100%;
-  height: .25px;
+  left: 35%;
+  width: 30%;
   background-color: grey;
   margin: 0;
 }

@@ -1,9 +1,25 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 function Overlay() {
+  {
+    /**/
+  }
+  const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const [menuWidth, setMenuWidth] = useState(200);
+  // const oldflexRatios = (expandedItem: string | null) => { flex: expandedItem ? 1 : 0.5 };
+  // const [flexRatios, setFlexRatios] = useState(oldflexRatios)
+  const handleExpandedItem = (itemName: string) => {
+    if (expandedItem === itemName) {
+      setExpandedItem(null);
+      setMenuWidth(200);
+      // flexRatios(expandedItem);
+    } else {
+      setExpandedItem(itemName);
+      setMenuWidth(300);
+      // flexRatios(expandedItem);
+    }
+  };
   return (
     <>
       <div
@@ -18,11 +34,11 @@ function Overlay() {
         cheok.works
       </div>
       <div>
-        <div className="topMenu">
+        <div className="topMenu" style={{ width: `${menuWidth}px` }}>
           {/*top has keyboards, about, works in a menu clickable*/}
-          <p>keyboards</p>
-          <p>about</p>
-          <p>works</p>
+          <p onClick={() => handleExpandedItem("keyboards")}>keyboards</p>
+          <p onClick={() => handleExpandedItem("about")}>about</p>
+          <p onClick={() => handleExpandedItem("works")}>works</p>
         </div>
         <hr className="topMenuHr"></hr>
       </div>
