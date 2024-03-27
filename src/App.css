@@ -121,13 +121,17 @@ html, body, #root {
   margin: auto;
   top: 90%;
   height: 10%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-  /* gap: 30px; */
+  transition: grid-template-columns 0.2s ease-in-out;
   z-index: 3;
 }
 /*Each p element within the menu on highlight will turn white, clickable hover*/
+.topMenu p {
+  text-align: center;
+}
 .topMenu p:hover {
   color: white;
   cursor: pointer;
@@ -139,4 +143,7 @@ html, body, #root {
   width: 30%;
   background-color: grey;
   margin: 0;
+}
+.scaled {
+  transform: scale(1.1);
 }
