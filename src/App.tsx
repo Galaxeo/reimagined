@@ -12,7 +12,7 @@ function Overlay() {
 
   const handleExpandedItem = (itemName: string) => {
     const menu = ref.current as HTMLElement;
-    if (expandedItem === itemName) {
+    if (expandedItem === itemName || itemName === "") {
       setExpandedItem(null);
       setMenuWidth(300);
       menu.style.gridTemplateColumns = "1fr 1fr 1fr";
@@ -53,24 +53,33 @@ function Overlay() {
         <div ref={ref} className="topMenu" style={{ width: `${menuWidth}px` }}>
           <p
             className={menuItemClass("about")}
-            onClick={() => {
+            onMouseOver={() => {
               handleExpandedItem("about");
+            }}
+            onMouseOut={() => {
+              handleExpandedItem("");
             }}
           >
             about
           </p>
           <p
             className={menuItemClass("keyboards")}
-            onClick={() => {
+            onMouseOver={() => {
               handleExpandedItem("keyboards");
+            }}
+            onMouseOut={() => {
+              handleExpandedItem("");
             }}
           >
             keyboards
           </p>
           <p
             className={menuItemClass("works")}
-            onClick={() => {
+            onMouseOver={() => {
               handleExpandedItem("works");
+            }}
+            onMouseOut={() => {
+              handleExpandedItem("");
             }}
           >
             works
