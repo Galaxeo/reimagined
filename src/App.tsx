@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { easing } from "maath";
+import Keyboards from "./Keyboards";
 
-function Overlay() {
+function Overlay({ handleCurrentPage }) {
   {
     /**/
   }
@@ -39,15 +40,18 @@ function Overlay() {
   return (
     <>
       <div
+        className="topLeftLogo"
         style={{
           position: "absolute",
           top: 30,
           left: 30,
-          pointerEvents: "none",
           fontSize: "13px",
         }}
+        onClick={() => {
+          handleCurrentPage("");
+        }}
       >
-        cheok.works
+        c\w
       </div>
       <div>
         <div ref={ref} className="topMenu" style={{ width: `${menuWidth}px` }}>
@@ -70,6 +74,9 @@ function Overlay() {
             onMouseOut={() => {
               handleExpandedItem("");
             }}
+            onClick={() => {
+              handleCurrentPage("keyboards");
+            }}
           >
             keyboards
           </p>
@@ -85,7 +92,6 @@ function Overlay() {
             works
           </p>
         </div>
-        <hr className="topMenuHr"></hr>
       </div>
     </>
   );
@@ -93,10 +99,14 @@ function Overlay() {
 
 function App() {
   const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState("");
+  function handleCurrentPage(page: string) {
+    setCurrentPage(page);
+  }
 
   return (
     <>
-      <Overlay></Overlay>
+      <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
       <div
         style={{
           marginTop: "30vh",
@@ -106,15 +116,8 @@ function App() {
           flexDirection: "column",
         }}
       >
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
+        {currentPage === "keyboards" && <Keyboards></Keyboards>}
+        {currentPage === "" && <h1>cheok.works</h1>}
       </div>
     </>
   );

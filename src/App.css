@@ -136,14 +136,10 @@ html, body, #root {
   color: white;
   cursor: pointer;
 }
-.topMenuHr {
-  position: absolute;
-  top: 95%;
-  left: 35%;
-  width: 30%;
-  background-color: grey;
-  margin: 0;
-}
 .scaled {
-  transform: scale(1.1);
+  transform: scale(1.0);
+}
+.topLeftLogo:hover {
+  color: white;
+  cursor: pointer;
 }
