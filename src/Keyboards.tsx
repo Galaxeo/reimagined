@@ -102,6 +102,11 @@ function Scene() {
   const [scrolling, setScrolling] = useState(true);
   const containerRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const handleSelectedImage = (i) => {
+    setSelectedImage(i);
+    console.log(selectedImage);
+    console.log(keyboardDescriptions[i]);
+  };
   const handleVertScroll = (e) => {
     if (containerRef.current != null) {
       containerRef.current.scrollLeft += e.deltaY;
@@ -110,8 +115,16 @@ function Scene() {
 
   return (
     <>
+      <div className="kbInfoLayer">
+        {selectedImage != null && (
+          <div className="kbInfo">
+            <p>{keyboardDescriptions[selectedImage].title}</p>
+            <p>{keyboardDescriptions[selectedImage].switches}</p>
+            <p>{keyboardDescriptions[selectedImage].keycaps}</p>
+          </div>
+        )}
+      </div>
       <div className="kbBigCont">
-        {/* <p className="kbArrow">&lt;</p> */}
         <div ref={containerRef} onWheel={handleVertScroll} className="kbCont">
           {imagePaths.map((url, i) => (
             <img
@@ -120,11 +133,13 @@ function Scene() {
               key={i}
               width="100"
               height="100"
+              onClick={() => {
+                handleSelectedImage(i);
+              }}
             />
           ))}
-          <p>commissions</p>
         </div>
-        {/* <p className="kbArrow">&gt;</p> */}
+        {/* <p style={{ textAlign: "center" }}>commissions</p> */}
       </div>
     </>
   );

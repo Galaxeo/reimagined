@@ -94,17 +94,6 @@ html, body, #root {
 .title p {
   transition: opacity 0.5s ease-in-out;
 }
-.keybInfo {
-  top: 10%;
-  left: 50%;
-  z-index: 3;
-  font-size: 3rem;
-  position: fixed;
-  color: white;
-}
-.keybInfo * {
-  position: fixed;
-}
 
 @keyframes fadeInOut {
   0% { opacity: 0; }
@@ -146,10 +135,12 @@ html, body, #root {
 .kbImage {
   object-fit: cover;
 }
+.kbImage:hover {
+  cursor: pointer;
+}
 .kbCont {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 5px;
   max-height: 100%;
   max-width: 50%;
@@ -159,12 +150,12 @@ html, body, #root {
 }
 .kbBigCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: 5px;
+  gap: 25px;
 }
 .kbArrow {
   font-size: 1.75rem;
@@ -174,4 +165,7 @@ html, body, #root {
 .kbArrow:hover {
   cursor: pointer;
   color: white;
+}
+.kbInfo {
+  position: absolute;
 }
