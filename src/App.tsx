@@ -109,11 +109,12 @@ function App() {
       <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
       <div
         style={{
-          marginTop: "30vh",
+          marginTop: "10vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
+          height: "70vh",
         }}
       >
         {currentPage === "keyboards" && <Keyboards></Keyboards>}
