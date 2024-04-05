@@ -92,11 +92,16 @@ const keyboardDescriptions = [
     switches: "Coffee Chip Ice Cream",
     keycaps: "GMK Hanok",
   },
+  {
+    title: "Idobao ID67",
+    switches: "Boba U4T",
+    keycaps: "GMK Mizu clones",
+  },
 ];
 
 function Scene() {
   const imagePaths = Array.from(
-    { length: 18 },
+    { length: 19 },
     (_, i) => `/assets/Keyboards/${i + 1}.jpg`
   );
   const [scrolling, setScrolling] = useState(true);
@@ -125,7 +130,8 @@ function Scene() {
           <>
             <div className="kbInfo">
               <h1>Commissions</h1>
-              <p>Sorry! not doing any rn</p>
+              <p>Currently reserved for friends & family</p>
+              <p>Feel free to email any questions to hwjustincheok@gmail.com</p>
               <p
                 className="kbInfoClose"
                 onClick={() => {
@@ -142,7 +148,9 @@ function Scene() {
             <div className="kbInfo">
               <img src={imagePaths[selectedImage]}></img>
               <div>
-                <p>{keyboardDescriptions[selectedImage].title}</p>
+                <p style={{ fontSize: "1.5rem" }}>
+                  {keyboardDescriptions[selectedImage].title}
+                </p>
                 <p>{keyboardDescriptions[selectedImage].switches}</p>
                 <p>{keyboardDescriptions[selectedImage].keycaps}</p>
                 <p
@@ -172,7 +180,7 @@ function Scene() {
           ))}
         </div>
         <p
-          style={{ textAlign: "center" }}
+          className="kbCommissions"
           onClick={() => {
             handleSelectedImage("commissions");
           }}

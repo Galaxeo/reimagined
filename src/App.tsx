@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 import { easing } from "maath";
 import Keyboards from "./Keyboards";
+import About from "./About";
 
 function Overlay({ handleCurrentPage }) {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -61,6 +62,9 @@ function Overlay({ handleCurrentPage }) {
             onMouseOut={() => {
               handleExpandedItem("");
             }}
+            onClick={() => {
+              handleCurrentPage("about");
+            }}
           >
             about
           </p>
@@ -101,10 +105,12 @@ function App() {
   const title = useRef(null);
 
   function handleCurrentPage(page: string) {
+    if (page == currentPage) {
+      return;
+    }
     if (title.current != null) {
       let titleEle = title.current as HTMLElement;
       titleEle.classList.add("deleting");
-      console.log("here");
     }
     setCurrentPage(page);
   }
@@ -123,6 +129,7 @@ function App() {
         }}
       >
         {currentPage === "keyboards" && <Keyboards></Keyboards>}
+        {currentPage === "about" && <About></About>}
         {currentPage === "" && (
           <h1 ref={title} className="middleLogo">
             cheok.works
