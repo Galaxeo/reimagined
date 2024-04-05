@@ -1,12 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { easing } from "maath";
 import Keyboards from "./Keyboards";
 
 function Overlay({ handleCurrentPage }) {
-  {
-    /**/
-  }
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [menuWidth, setMenuWidth] = useState(300);
   const ref = useRef(null);
@@ -100,7 +98,14 @@ function Overlay({ handleCurrentPage }) {
 function App() {
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState("");
+  const title = useRef(null);
+
   function handleCurrentPage(page: string) {
+    if (title.current != null) {
+      let titleEle = title.current as HTMLElement;
+      titleEle.classList.add("deleting");
+      console.log("here");
+    }
     setCurrentPage(page);
   }
 
@@ -118,7 +123,11 @@ function App() {
         }}
       >
         {currentPage === "keyboards" && <Keyboards></Keyboards>}
-        {currentPage === "" && <h1>cheok.works</h1>}
+        {currentPage === "" && (
+          <h1 ref={title} className="middleLogo">
+            cheok.works
+          </h1>
+        )}
       </div>
     </>
   );

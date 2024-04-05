@@ -115,13 +115,47 @@ function Scene() {
 
   return (
     <>
-      <div className="kbInfoLayer">
-        {selectedImage != null && (
-          <div className="kbInfo">
-            <p>{keyboardDescriptions[selectedImage].title}</p>
-            <p>{keyboardDescriptions[selectedImage].switches}</p>
-            <p>{keyboardDescriptions[selectedImage].keycaps}</p>
-          </div>
+      <div
+        className="kbInfoLayer"
+        onClick={() => {
+          handleSelectedImage(null);
+        }}
+      >
+        {selectedImage != null && selectedImage == "commissions" && (
+          <>
+            <div className="kbInfo">
+              <h1>Commissions</h1>
+              <p>Sorry! not doing any rn</p>
+              <p
+                className="kbInfoClose"
+                onClick={() => {
+                  handleSelectedImage(null);
+                }}
+              >
+                close
+              </p>
+            </div>
+          </>
+        )}
+        {selectedImage != null && selectedImage != "commissions" && (
+          <>
+            <div className="kbInfo">
+              <img src={imagePaths[selectedImage]}></img>
+              <div>
+                <p>{keyboardDescriptions[selectedImage].title}</p>
+                <p>{keyboardDescriptions[selectedImage].switches}</p>
+                <p>{keyboardDescriptions[selectedImage].keycaps}</p>
+                <p
+                  className="kbInfoClose"
+                  onClick={() => {
+                    handleSelectedImage(null);
+                  }}
+                >
+                  close
+                </p>
+              </div>
+            </div>
+          </>
         )}
       </div>
       <div className="kbBigCont">
@@ -131,15 +165,20 @@ function Scene() {
               className="kbImage"
               src={url}
               key={i}
-              width="100"
-              height="100"
               onClick={() => {
                 handleSelectedImage(i);
               }}
             />
           ))}
         </div>
-        {/* <p style={{ textAlign: "center" }}>commissions</p> */}
+        <p
+          style={{ textAlign: "center" }}
+          onClick={() => {
+            handleSelectedImage("commissions");
+          }}
+        >
+          commissions
+        </p>
       </div>
     </>
   );

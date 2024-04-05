@@ -57,6 +57,63 @@ table {
 	border-spacing: 0;
 }
  
+@-webkit-keyframes silo-fade {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(1.4em);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+@-moz-keyframes silo-fade {
+    0% {
+        opacity: 0;
+        -moz-transform: translateY(1.4em);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+}
+@keyframes silo-fade {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(1.4em);
+        -moz-transform: translateY(1.4em);
+        -ms-transform: translateY(1.4em);
+        -o-transform: translateY(1.4em);
+        transform: translateY(1.4em);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+@keyframes silo-fade-away {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-1.4em);
+        -moz-transform: translateY(-1.4em);
+        -ms-transform: translateY(-1.4em);
+        -o-transform: translateY(-1.4em);
+        transform: translateY(-1.4em);
+    }
+}
+/* Defaults */
 html, body, #root {
   font-family: 'RodinL', 'Fira Sans', sans-serif;
   padding: 0;
@@ -65,16 +122,15 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
 }
-.logo {
-  height: auto;
-  width: max(20vw, 200px);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  animation: silo-fade 1.5s;
+.middleLogo {
+  animation: silo-fade 1s;
   animation-fill-mode: forwards;
   pointer-events: none;
+}
+.deleting {
+  animation: silo-fade-away 0.3s;
+  animation-fill-mode: forwards;
+
 }
 .largeText {
   font-family: 'RodinM', 'Fira Sans', sans-serif;
@@ -134,6 +190,8 @@ html, body, #root {
 }
 .kbImage {
   object-fit: cover;
+  width: min(100px, 15vw);
+  height: min(100px,  15vw);
 }
 .kbImage:hover {
   cursor: pointer;
@@ -143,7 +201,7 @@ html, body, #root {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 5px;
   max-height: 100%;
-  max-width: 50%;
+  max-width: max(50%, 500px);
   box-sizing: border-box;
   padding-top: 20px;
   /* overflow-x: hidden; */
@@ -153,9 +211,11 @@ html, body, #root {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   gap: 25px;
+  animation: silo-fade .8s;
+  animation-fill-mode: forwards;
 }
 .kbArrow {
   font-size: 1.75rem;
@@ -167,5 +227,28 @@ html, body, #root {
   color: white;
 }
 .kbInfo {
+  top: 0%; 
+  left: 0%;
   position: absolute;
+  height: 100%;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  animation: silo-fade .5s;
+  animation-fill-mode: forwards;
+}
+.kbInfo img{
+  max-width: max(45%, 375px);
+  height: auto;
+}
+.kbInfoClose {
+  text-align: center;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 4;
 }
