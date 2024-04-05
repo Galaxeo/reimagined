@@ -273,6 +273,9 @@ html, body, #root {
   animation: silo-fade .8s;
   animation-fill-mode: forwards;
 }
+.about img {
+  height: 250px;
+}
 .about p {
   max-width: max(45%, 500px);
   text-align: center;
