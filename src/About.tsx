@@ -1,7 +1,6 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import "./App.css";
 import headshot from "/assets/headshot.jpg";
-import { center } from "maath/dist/declarations/src/buffer";
 
 function About() {
   const imagePaths = Array.from(

@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { Suspense, useState, useRef, useEffect } from "react";
 import React from "react";
 import "./App.css";
 import { easing } from "maath";
 import Keyboards from "./Keyboards";
 import About from "./About";
+import { grid } from "ldrs";
+
+grid.register();
 
 function Overlay({ handleCurrentPage }) {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -117,25 +120,29 @@ function App() {
 
   return (
     <>
-      <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
-      <div
-        style={{
-          marginTop: "10vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          height: "70vh",
-        }}
+      <Suspense
+        fallback={<l-grid size="60" speed="1.5" color="black"></l-grid>}
       >
-        {currentPage === "keyboards" && <Keyboards></Keyboards>}
-        {currentPage === "about" && <About></About>}
-        {currentPage === "" && (
-          <h1 ref={title} className="middleLogo">
-            cheok.works
-          </h1>
-        )}
-      </div>
+        <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
+        <div
+          style={{
+            marginTop: "10vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            height: "70vh",
+          }}
+        >
+          {currentPage === "keyboards" && <Keyboards></Keyboards>}
+          {currentPage === "about" && <About></About>}
+          {currentPage === "" && (
+            <h1 ref={title} className="middleLogo">
+              cheok.works
+            </h1>
+          )}
+        </div>
+      </Suspense>
     </>
   );
 }
