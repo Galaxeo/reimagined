@@ -129,8 +129,6 @@ html, body, #root {
 }
 .deleting {
   animation: silo-fade-away 0.3s;
-  animation-fill-mode: forwards;
-
 }
 .largeText {
   font-family: 'RodinM', 'Fira Sans', sans-serif;
@@ -232,7 +230,7 @@ html, body, #root {
   position: absolute;
   height: 100%;
   width: 100vw;
-  background-color: rgba(15, 15, 15, 0.7);
+  background-color: rgba(15, 15, 15, 0.8);
   z-index: 3;
   display: flex;
   justify-content: center;
@@ -277,6 +275,12 @@ html, body, #root {
   height: 250px;
 }
 .about p {
-  max-width: max(45%, 500px);
+  max-width: max(45%, 400px);
   text-align: center;
+}
+.aboutLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

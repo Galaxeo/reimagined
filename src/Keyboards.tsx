@@ -97,11 +97,16 @@ const keyboardDescriptions = [
     switches: "Boba U4T",
     keycaps: "GMK Mizu clones",
   },
+  {
+    title: "AVA",
+    switches: "Aflion Melody",
+    keycaps: "-",
+  },
 ];
 
 function Scene() {
   const imagePaths = Array.from(
-    { length: 19 },
+    { length: 20 },
     (_, i) => `/assets/Keyboards/${i + 1}.jpg`
   );
   const [scrolling, setScrolling] = useState(true);
@@ -148,10 +153,13 @@ function Scene() {
             <div className="kbInfo">
               <img src={imagePaths[selectedImage]}></img>
               <div>
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Keyboard</p>
                 <p style={{ fontSize: "1.5rem" }}>
                   {keyboardDescriptions[selectedImage].title}
                 </p>
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Switches</p>
                 <p>{keyboardDescriptions[selectedImage].switches}</p>
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Keycaps</p>
                 <p>{keyboardDescriptions[selectedImage].keycaps}</p>
                 <p
                   className="kbInfoClose"
