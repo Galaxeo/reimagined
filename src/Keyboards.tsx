@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 
 const keyboardDescriptions = [
@@ -109,18 +109,12 @@ function Scene() {
     { length: 20 },
     (_, i) => `/assets/Keyboards/${i + 1}.jpg`
   );
-  const [scrolling, setScrolling] = useState(true);
   const containerRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const handleSelectedImage = (i) => {
     setSelectedImage(i);
     console.log(selectedImage);
     console.log(keyboardDescriptions[i]);
-  };
-  const handleVertScroll = (e) => {
-    if (containerRef.current != null) {
-      containerRef.current.scrollLeft += e.deltaY;
-    }
   };
 
   return (
@@ -175,7 +169,7 @@ function Scene() {
         )}
       </div>
       <div className="kbBigCont">
-        <div ref={containerRef} onWheel={handleVertScroll} className="kbCont">
+        <div ref={containerRef} className="kbCont">
           {imagePaths.map((url, i) => (
             <img
               className="kbImage"

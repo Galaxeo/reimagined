@@ -1,24 +1,28 @@
 import { useRef } from "react";
 import "./App.css";
-import github from "/assets/About/github.png";
-import linkedin from "/assets/About/linkedin.png";
-import utube from "/assets/About/utube.png";
+import headshot from "/assets/headshot.jpg";
 
 function About() {
-  const imagePaths = Array.from(
-    { length: 5 },
-    (_, i) => `/assets/About/${i + 1}.jpg`
-  );
   const title = useRef(null);
   return (
     <>
       <div className="about">
-        <h1 ref={title}>About</h1>
+        {/* <h1 ref={title}>About</h1> */}
+        <p style={{ fontSize: "1.75rem" }}>Hi, I'm Justin!</p>
+        <img
+          src={headshot}
+          style={{
+            height: "150px",
+            borderRadius: "3%",
+            // border: "1px solid white",
+          }}
+        ></img>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            gap: "5px",
           }}
         >
           <p>

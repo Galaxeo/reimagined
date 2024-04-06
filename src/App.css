@@ -173,6 +173,7 @@ html, body, #root {
 }
 /*Each p element within the menu on highlight will turn white, clickable hover*/
 .topMenu p {
+  color: darkgrey;
   text-align: center;
 }
 .topMenu p:hover {
@@ -180,7 +181,7 @@ html, body, #root {
   cursor: pointer;
 }
 .scaled {
-  transform: scale(1.0);
+  transform: scale(1.1);
 }
 .topLeftLogo:hover {
   color: white;
@@ -255,6 +256,7 @@ html, body, #root {
 }
 .kbCommissions {
   text-align: center;
+  color: darkgrey;
   cursor: pointer;
 }
 .kbCommissions:hover {
@@ -283,4 +285,32 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+.works {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 100vh;
+  width: 100vw;
+  animation: silo-fade .8s;
+  animation-fill-mode: forwards;
+}
+.worksCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+  max-height: 100%;
+  max-width: max(50%, 500px);
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+.worksCont img{
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+.worksCont img:hover {
+  cursor: pointer;
 }

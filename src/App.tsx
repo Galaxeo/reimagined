@@ -1,9 +1,8 @@
 import { Suspense, useState, useRef, useEffect } from "react";
-import React from "react";
 import "./App.css";
-import { easing } from "maath";
 import Keyboards from "./Keyboards";
 import About from "./About";
+import Works from "./Works";
 import { grid } from "ldrs";
 
 grid.register();
@@ -93,6 +92,9 @@ function Overlay({ handleCurrentPage }) {
             onMouseOut={() => {
               handleExpandedItem("");
             }}
+            onClick={() => {
+              handleCurrentPage("works");
+            }}
           >
             works
           </p>
@@ -103,7 +105,6 @@ function Overlay({ handleCurrentPage }) {
 }
 
 function App() {
-  const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState("");
   const title = useRef(null);
 
@@ -136,6 +137,7 @@ function App() {
         >
           {currentPage === "keyboards" && <Keyboards></Keyboards>}
           {currentPage === "about" && <About></About>}
+          {currentPage === "works" && <Works></Works>}
           {currentPage === "" && (
             <h1 ref={title} className="middleLogo">
               cheok.works
