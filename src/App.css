@@ -314,3 +314,29 @@ html, body, #root {
 .worksCont img:hover {
   cursor: pointer;
 }
+.workInfo {
+  top: 0%; 
+  left: 0%;
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background-color: rgba(15, 15, 15, 0.8);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  animation: silo-fade .5s;
+  animation-fill-mode: forwards;
+}
+.workInfo img{
+  max-width: max(45%, 375px);
+  height: auto;
+}
+.workInfo p{
+  text-align: center;
+}
+.workInfoClose{
+  cursor: pointer;
+}

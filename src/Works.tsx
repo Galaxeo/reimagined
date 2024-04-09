@@ -93,13 +93,76 @@ function Works() {
     { length: 12 },
     (_, i) => `/assets/Works/${i + 1}.jpg`
   );
+  const [selectedImage, setSelectedImage] = useState(null);
+  const handleSelectedImage = (i) => {
+    setSelectedImage(i);
+  };
+
   return (
     <>
+      <div
+        className="worksInfoLayer"
+        onClick={() => {
+          handleSelectedImage(null);
+        }}
+      >
+        {selectedImage != null && (
+          <>
+            <div className="workInfo">
+              <img src={imagePaths[selectedImage]}></img>
+              <div>
+                <h1>{workDescriptions[selectedImage].title}</h1>
+                <p>Tools: {workDescriptions[selectedImage].tools}</p>
+                <p>{workDescriptions[selectedImage].description}</p>
+                <a
+                  href={workDescriptions[selectedImage].link}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  style={{
+                    color: "white",
+                    textDecoration: "underline",
+                  }}
+                >
+                  GitHub
+                </a>
+                {workDescriptions[selectedImage].demo && (
+                  <a
+                    href={workDescriptions[selectedImage].demo}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    style={{
+                      color: "white",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    Demo
+                  </a>
+                )}
+                <p
+                  className="workInfoClose"
+                  onClick={() => {
+                    handleSelectedImage(null);
+                  }}
+                >
+                  close
+                </p>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
       <div className="works">
-        {/* <h1>Works</h1> */}
         <div className="worksCont">
           {imagePaths.map((url, i) => {
-            return <img key={i} src={url}></img>;
+            return (
+              <img
+                key={i}
+                src={url}
+                onClick={() => {
+                  handleSelectedImage(i);
+                }}
+              ></img>
+            );
           })}
         </div>
         <p className="kbCommissions">github</p>{" "}

@@ -109,12 +109,9 @@ function Scene() {
     { length: 20 },
     (_, i) => `/assets/Keyboards/${i + 1}.jpg`
   );
-  const containerRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const handleSelectedImage = (i) => {
     setSelectedImage(i);
-    console.log(selectedImage);
-    console.log(keyboardDescriptions[i]);
   };
 
   return (
@@ -169,7 +166,7 @@ function Scene() {
         )}
       </div>
       <div className="kbBigCont">
-        <div ref={containerRef} className="kbCont">
+        <div className="kbCont">
           {imagePaths.map((url, i) => (
             <img
               className="kbImage"
