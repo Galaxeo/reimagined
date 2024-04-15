@@ -112,7 +112,9 @@ function Works() {
             <div className="workInfo">
               <img className="workImg" src={imagePaths[selectedImage]}></img>
               <div className="workDesc">
-                <h1>{workDescriptions[selectedImage].title}</h1>
+                <p style={{ fontSize: "1.5rem" }}>
+                  {workDescriptions[selectedImage].title}
+                </p>
                 <div className="workHelpers">
                   <a
                     href={workDescriptions[selectedImage].link}
@@ -154,6 +156,7 @@ function Works() {
               <img
                 key={i}
                 src={url}
+                className="worksPreview"
                 onClick={() => {
                   handleSelectedImage(i);
                 }}
