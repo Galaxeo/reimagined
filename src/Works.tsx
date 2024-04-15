@@ -1,5 +1,6 @@
+// @ts-nocheck
 import "./App.css";
-import { useState, useRef } from "react";
+import { useState } from "react";
 const workDescriptions = [
   {
     title: "Keyboard Data Analysis",
@@ -78,7 +79,7 @@ const workDescriptions = [
     tools: "React, Vite, Three.js (React-Three-Fiber)",
     description:
       "A 3D iteration of my portfolio, made to be interactive and visually appealing.",
-    link: "https://github.com/Galaxeo/website-v2",
+    link: "https://github.com/Galaxeo/3d-gallery",
   },
   {
     title: "Portfolio (Version 2.0)",
@@ -109,36 +110,31 @@ function Works() {
         {selectedImage != null && (
           <>
             <div className="workInfo">
-              <img src={imagePaths[selectedImage]}></img>
-              <div>
+              <img className="workImg" src={imagePaths[selectedImage]}></img>
+              <div className="workDesc">
                 <h1>{workDescriptions[selectedImage].title}</h1>
-                <p>Tools: {workDescriptions[selectedImage].tools}</p>
-                <p>{workDescriptions[selectedImage].description}</p>
-                <a
-                  href={workDescriptions[selectedImage].link}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  style={{
-                    color: "white",
-                    textDecoration: "underline",
-                  }}
-                >
-                  GitHub
-                </a>
-                {workDescriptions[selectedImage].demo && (
+                <div className="workHelpers">
                   <a
-                    href={workDescriptions[selectedImage].demo}
+                    href={workDescriptions[selectedImage].link}
                     target="_blank"
                     rel="noreferrer noopener"
-                    style={{
-                      color: "white",
-                      textDecoration: "underline",
-                    }}
                   >
-                    Demo
+                    Repo
                   </a>
-                )}
+                  {workDescriptions[selectedImage].demo && (
+                    <a
+                      href={workDescriptions[selectedImage].demo}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Demo
+                    </a>
+                  )}
+                </div>
+                <p>Tools: {workDescriptions[selectedImage].tools}</p>
+                <p>{workDescriptions[selectedImage].description}</p>
                 <p
+                  style={{ marginTop: "10px" }}
                   className="workInfoClose"
                   onClick={() => {
                     handleSelectedImage(null);

@@ -1,9 +1,7 @@
-import { useRef } from "react";
 import "./App.css";
 import headshot from "/assets/headshot.jpg";
 
 function About() {
-  const title = useRef(null);
   return (
     <>
       <div className="about">
@@ -51,10 +49,6 @@ function About() {
             href="https://github.com/Galaxeo"
             target="_blank"
             rel="noreferrer noopener"
-            style={{
-              color: "white",
-              textDecoration: "underline",
-            }}
           >
             GitHub
           </a>
@@ -62,10 +56,6 @@ function About() {
             href="https://www.linkedin.com/in/jhcheok/"
             target="_blank"
             rel="noreferrer noopener"
-            style={{
-              color: "white",
-              textDecoration: "underline",
-            }}
           >
             LinkedIn
           </a>
@@ -73,10 +63,6 @@ function About() {
             href="https://drive.google.com/file/d/1YCOsxZgn9JpehumWu_langLEVhcbsFm9/view?usp=sharing"
             target="_blank"
             rel="noreferrer noopener"
-            style={{
-              color: "white",
-              textDecoration: "underline",
-            }}
           >
             Resume
           </a>

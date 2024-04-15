@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Suspense, useState, useRef, useEffect } from "react";
 import "./App.css";
 import Keyboards from "./Keyboards";

@@ -253,6 +253,10 @@ html, body, #root {
   margin: 10px;
   cursor: pointer;
   z-index: 4;
+  color: darkgrey;
+}
+.kbInfoClose:hover {
+  color: white;
 }
 .kbCommissions {
   text-align: center;
@@ -285,6 +289,13 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+.aboutLinks > a {
+  color: darkgrey;
+  cursor: pointer;
+}
+.aboutLinks > a:hover {
+  color: white;
 }
 .works {
   display: flex;
@@ -336,7 +347,35 @@ html, body, #root {
 }
 .workInfo p{
   text-align: center;
+  max-width: max(45%, 400px);
 }
 .workInfoClose{
+  color: darkgrey;
   cursor: pointer;
+}
+.workInfoClose:hover{
+  color: white;
+}
+.workImg {
+  max-width: max(45%, 375px);
+  height: auto;
+}
+.workDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.workHelpers {
+  display: flex;
+  gap: 5px;
+  margin: 5px;
+}
+.workHelpers > a{
+  color: darkgrey;
+  cursor: pointer;
+}
+.workHelpers > a:hover{
+  color: white;
 }
