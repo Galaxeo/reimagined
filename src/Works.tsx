@@ -164,7 +164,14 @@ function Works() {
             );
           })}
         </div>
-        <p className="kbCommissions">github</p>{" "}
+        <a
+          className="kbCommissions"
+          href={"https://github.com/galaxeo"}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          github
+        </a>
       </div>
     </>
   );
