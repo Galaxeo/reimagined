@@ -92,7 +92,7 @@ const workDescriptions = [
 function Works() {
   const imagePaths = Array.from(
     { length: 12 },
-    (_, i) => `/assets/Works/${i + 1}.jpg`
+    (_, i) => `/assets/Works/${i + 1}.webp`
   );
   const [selectedImage, setSelectedImage] = useState(null);
   const handleSelectedImage = (i) => {

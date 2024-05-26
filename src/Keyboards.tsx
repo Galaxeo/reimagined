@@ -108,7 +108,7 @@ const keyboardDescriptions = [
 function Scene() {
   const imagePaths = Array.from(
     { length: 20 },
-    (_, i) => `/assets/Keyboards/${i + 1}.jpg`
+    (_, i) => `/assets/Keyboards/${i + 1}.webp`
   );
   const [selectedImage, setSelectedImage] = useState(null);
   const handleSelectedImage = (i) => {

@@ -9,6 +9,14 @@ import { grid } from "ldrs";
 grid.register();
 
 function Overlay({ handleCurrentPage }) {
+  const keybPaths = Array.from(
+    { length: 20 },
+    (_, i) => `/assets/Keyboards/${i + 1}.webp`
+  );
+  const workPaths = Array.from(
+    { length: 12 },
+    (_, i) => `/assets/Works/${i + 1}.webp`
+  );
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [menuWidth, setMenuWidth] = useState(300);
   const ref = useRef(null);
@@ -41,6 +49,13 @@ function Overlay({ handleCurrentPage }) {
 
   return (
     <>
+      {/* preload all images from keybPaths and workPaths */}
+      {keybPaths.map((path, i) => (
+        <link key={i} rel="preload" as="image" href={path} />
+      ))}
+      {workPaths.map((path, i) => (
+        <link key={i} rel="preload" as="image" href={path} />
+      ))}
       <div
         className="topLeftLogo"
         style={{
