@@ -112,9 +112,14 @@ function Works() {
             <div className="workInfo">
               <img className="workImg" src={imagePaths[selectedImage]}></img>
               <div className="workDesc">
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Project</p>
                 <p style={{ fontSize: "1.5rem" }}>
                   {workDescriptions[selectedImage].title}
                 </p>
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Tools</p>
+                <p>{workDescriptions[selectedImage].tools}</p>
+                <p style={{ fontSize: ".75rem", color: "grey" }}>Description</p>
+                <p>{workDescriptions[selectedImage].description}</p>
                 <div className="workHelpers">
                   <a
                     href={workDescriptions[selectedImage].link}
@@ -133,8 +138,6 @@ function Works() {
                     </a>
                   )}
                 </div>
-                <p>Tools: {workDescriptions[selectedImage].tools}</p>
-                <p>{workDescriptions[selectedImage].description}</p>
                 <p
                   style={{ marginTop: "10px" }}
                   className="workInfoClose"

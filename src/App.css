@@ -248,6 +248,14 @@ html, body, #root {
 .kbInfo p{
   text-align: center;
 }
+.kbYoutube {
+  text-align: center;
+  width: 100%;
+  color: darkgrey;
+}
+.kbYoutube:hover {
+  color: white;
+}
 .kbInfoClose {
   text-align: center;
   margin: 10px;
@@ -363,6 +371,7 @@ html, body, #root {
 }
 .workImg {
   max-width: max(45%, 375px);
+  max-height: 500px;
   height: auto;
 }
 .workDesc {
