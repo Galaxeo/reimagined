@@ -80,6 +80,7 @@ const workDescriptions = [
     description:
       "A 3D iteration of my portfolio, made to be interactive and visually appealing.",
     link: "https://github.com/Galaxeo/3d-gallery",
+    demo: "https://nimble-daffodil-21602f.netlify.app/",
   },
   {
     title: "Portfolio (Version 2.0)",

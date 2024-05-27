@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { Suspense, useState, useRef, useEffect } from "react";
 import "./App.css";
-import Keyboards from "./Keyboards";
-import About from "./About";
-import Works from "./Works";
+import Keyboards from "./Keyboards.tsx";
+import About from "./About.tsx";
+import Works from "./Works.tsx";
 import { grid } from "ldrs";
 
 grid.register();
@@ -129,7 +129,7 @@ function App() {
       return;
     }
     if (title.current != null) {
-      let titleEle = title.current as HTMLElement;
+      const titleEle = title.current as HTMLElement;
       titleEle.classList.add("deleting");
     }
     setCurrentPage(page);
