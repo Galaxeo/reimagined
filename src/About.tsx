@@ -60,7 +60,7 @@ function About() {
             LinkedIn
           </a>
           <a
-            href="https://drive.google.com/file/d/1YCOsxZgn9JpehumWu_langLEVhcbsFm9/view?usp=sharing"
+            href="https://drive.google.com/file/d/1-QUcfhdvOjK8JXWm_yfDs_Df5nz9iogv/view?usp=sharing"
             target="_blank"
             rel="noreferrer noopener"
           >
