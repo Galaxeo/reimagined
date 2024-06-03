@@ -65,7 +65,7 @@ const workDescriptions = [
     description:
       "A to-do list web application built using HTML, CSS, and JavaScript. The main focus of this project was to become familiar with the webpack module builder in order to separate and bundle the JS files.",
     link: "https://github.com/Galaxeo/todo-list",
-    demo: "https://cheok.works/todo-list/dist/index.html",
+    demo: "https://galaxeo.github.io/todo-list/",
   },
   {
     title: "The Odin Project repository",
