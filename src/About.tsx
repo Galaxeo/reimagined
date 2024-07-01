@@ -1,5 +1,5 @@
 import "./App.css";
-import headshot from "/assets/headshot.jpg";
+import icon from "/assets/icon.png";
 
 function About() {
   return (
@@ -8,9 +8,9 @@ function About() {
         {/* <h1 ref={title}>About</h1> */}
         <p style={{ fontSize: "1.75rem" }}>Hi, I'm Justin!</p>
         <img
-          src={headshot}
+          src={icon}
           style={{
-            height: "150px",
+            height: "125px",
             borderRadius: "3%",
             // border: "1px solid white",
           }}
