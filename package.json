@@ -16,9 +16,9 @@
     "@types/three": "^0.161.2",
     "ldrs": "^1.0.1",
     "maath": "^0.10.7",
-    "marked": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.0",
     "react-three-fiber": "^6.0.13",
     "three": "^0.161.0"
   },
