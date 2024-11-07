@@ -28,9 +28,9 @@ function About() {
             a software engineer at Reactor8.{" "}
           </p>
           <p>
-            Passionate about front-end development/design, learning, and daily improvement.
+            Passionate about full-stack development and daily improvement.
           </p>
-          <p>Building keyboards, running, & weightlifting on the side.</p>
+          <p>Building keyboards, badminton, & weightlifting on the side.</p>
         </div>
         <h2 style={{ fontSize: "1.5rem" }}>Contact</h2>
         <div
