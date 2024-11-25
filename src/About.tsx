@@ -25,7 +25,7 @@ function About() {
         >
           <p>
             Full-stack developer based in the Bay Area, CA, currently working as
-            a software engineer at Reactor8.{" "}
+            a contractor/freelance software engineer.{" "}
           </p>
           <p>
             Passionate about full-stack development and daily improvement.
