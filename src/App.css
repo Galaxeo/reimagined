@@ -1,121 +1,204 @@
 /* Custom Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap");
 @font-face {
-  font-family: 'RodinL';
-  src: url('/RodinL.woff') format('woff');
+  font-family: "RodinL";
+  src: url("/RodinL.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'RodinM';
-  src: url('/RodinM.woff') format('woff');
+  font-family: "RodinM";
+  src: url("/RodinM.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 /* CSS Reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
- 
+
 @-webkit-keyframes silo-fade {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(1.4em);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(1.4em);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
 }
 @-moz-keyframes silo-fade {
-    0% {
-        opacity: 0;
-        -moz-transform: translateY(1.4em);
-    }
-    100% {
-        opacity: 1;
-        -moz-transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(1.4em);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
 }
 @keyframes silo-fade {
-    0% {
-        opacity: 0;
-        -webkit-transform: translateY(1.4em);
-        -moz-transform: translateY(1.4em);
-        -ms-transform: translateY(1.4em);
-        -o-transform: translateY(1.4em);
-        transform: translateY(1.4em);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(1.4em);
+    -moz-transform: translateY(1.4em);
+    -ms-transform: translateY(1.4em);
+    -o-transform: translateY(1.4em);
+    transform: translateY(1.4em);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 @keyframes silo-fade-away {
-    0% {
-        opacity: 1;
-        -webkit-transform: translateY(0);
-        -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        -webkit-transform: translateY(-1.4em);
-        -moz-transform: translateY(-1.4em);
-        -ms-transform: translateY(-1.4em);
-        -o-transform: translateY(-1.4em);
-        transform: translateY(-1.4em);
-    }
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-1.4em);
+    -moz-transform: translateY(-1.4em);
+    -ms-transform: translateY(-1.4em);
+    -o-transform: translateY(-1.4em);
+    transform: translateY(-1.4em);
+  }
 }
 /* Defaults */
-html, body, #root {
-  font-family: 'RodinL', 'Fira Sans', sans-serif;
+html,
+body,
+#root {
+  font-family: "RodinL", "Fira Sans", sans-serif;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -123,16 +206,19 @@ html, body, #root {
   overflow: hidden;
 }
 .middleLogo {
+  z-index: 999;
   animation: silo-fade 1s;
   animation-fill-mode: forwards;
-  pointer-events: none;
+}
+.middleLogo > a:hover {
+  cursor: pointer;
 }
 .deleting {
   animation: silo-fade-away 0.3s;
 }
 .largeText {
-  font-family: 'RodinM', 'Fira Sans', sans-serif;
-  font-size: '2rem';
+  font-family: "RodinM", "Fira Sans", sans-serif;
+  font-size: "2rem";
   align-self: center;
 }
 .title {
@@ -150,15 +236,19 @@ html, body, #root {
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .languageCont {
   display: flex;
   flex-direction: row;
 }
 .topMenu {
-/*center on the bottom*/
+  /*center on the bottom*/
   position: absolute;
   inset: 0;
   margin: auto;
@@ -190,7 +280,7 @@ html, body, #root {
 .kbImage {
   object-fit: cover;
   width: min(100px, 15vw);
-  height: min(100px,  15vw);
+  height: min(100px, 15vw);
 }
 .kbImage:hover {
   cursor: pointer;
@@ -213,7 +303,7 @@ html, body, #root {
   height: 100vh;
   width: 100vw;
   gap: 25px;
-  animation: silo-fade .8s;
+  animation: silo-fade 0.8s;
   animation-fill-mode: forwards;
 }
 .kbArrow {
@@ -226,7 +316,7 @@ html, body, #root {
   color: white;
 }
 .kbInfo {
-  top: 0%; 
+  top: 0%;
   left: 0%;
   position: absolute;
   height: 100%;
@@ -238,14 +328,14 @@ html, body, #root {
   align-items: center;
   flex-direction: column;
   gap: 5px;
-  animation: silo-fade .5s;
+  animation: silo-fade 0.5s;
   animation-fill-mode: forwards;
 }
-.kbInfo img{
+.kbInfo img {
   max-width: max(45%, 375px);
   height: auto;
 }
-.kbInfo p{
+.kbInfo p {
   text-align: center;
 }
 .kbYoutube {
@@ -282,7 +372,7 @@ html, body, #root {
   gap: 15px;
   height: 100vh;
   width: 100vw;
-  animation: silo-fade .8s;
+  animation: silo-fade 0.8s;
   animation-fill-mode: forwards;
 }
 .about img {
@@ -313,7 +403,7 @@ html, body, #root {
   gap: 15px;
   height: 100vh;
   width: 100vw;
-  animation: silo-fade .8s;
+  animation: silo-fade 0.8s;
   animation-fill-mode: forwards;
 }
 .worksCont {
@@ -325,21 +415,21 @@ html, body, #root {
   box-sizing: border-box;
   padding-top: 20px;
 }
-.worksCont img{
+.worksCont img {
   object-fit: cover;
   width: min(100px, 15vw);
-  height: min(100px,  15vw);
+  height: min(100px, 15vw);
 }
 .worksPreview {
   object-fit: cover;
   width: min(100px, 15vw);
-  height: min(100px,  15vw);
+  height: min(100px, 15vw);
 }
 .worksPreview:hover {
   cursor: pointer;
 }
 .workInfo {
-  top: 0%; 
+  top: 0%;
   left: 0%;
   position: absolute;
   height: 100%;
@@ -351,22 +441,22 @@ html, body, #root {
   align-items: center;
   flex-direction: column;
   gap: 5px;
-  animation: silo-fade .5s;
+  animation: silo-fade 0.5s;
   animation-fill-mode: forwards;
 }
-.workInfo img{
+.workInfo img {
   max-width: max(45%, 375px);
   height: auto;
 }
-.workInfo p{
+.workInfo p {
   text-align: center;
   max-width: max(45%, 400px);
 }
-.workInfoClose{
+.workInfoClose {
   color: darkgrey;
   cursor: pointer;
 }
-.workInfoClose:hover{
+.workInfoClose:hover {
   color: white;
 }
 .workImg {
@@ -386,10 +476,10 @@ html, body, #root {
   gap: 5px;
   margin: 5px;
 }
-.workHelpers > a{
+.workHelpers > a {
   color: darkgrey;
   cursor: pointer;
 }
-.workHelpers > a:hover{
+.workHelpers > a:hover {
   color: white;
 }

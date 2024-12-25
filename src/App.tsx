@@ -4,6 +4,7 @@ import "./App.css";
 import Keyboards from "./Keyboards.tsx";
 import About from "./About.tsx";
 import Works from "./Works.tsx";
+import { useNavigate } from "react-router";
 import { grid } from "ldrs";
 
 grid.register();
@@ -123,6 +124,7 @@ function Overlay({ handleCurrentPage }) {
 function App() {
   const [currentPage, setCurrentPage] = useState("");
   const title = useRef(null);
+  const subtitle = useRef(null);
 
   function handleCurrentPage(page: string) {
     if (page == currentPage) {
@@ -131,8 +133,15 @@ function App() {
     if (title.current != null) {
       const titleEle = title.current as HTMLElement;
       titleEle.classList.add("deleting");
+      const subtitleEle = subtitle.current as HTMLElement;
+      subtitleEle.classList.add("deleting");
     }
     setCurrentPage(page);
+  }
+  const navigate = useNavigate();
+  function navigateToSvarog() {
+    console.log("navigating to svarog");
+    navigate("/svarog");
   }
 
   return (
@@ -155,9 +164,14 @@ function App() {
           {currentPage === "about" && <About></About>}
           {currentPage === "works" && <Works></Works>}
           {currentPage === "" && (
-            <h1 ref={title} className="middleLogo">
-              cheok.works
-            </h1>
+            <>
+              <h1 ref={title} className="middleLogo">
+                cheok.works
+              </h1>
+              <h3 ref={subtitle} className="middleLogo">
+                working on <a onClick={navigateToSvarog}>svarog</a>
+              </h3>
+            </>
           )}
         </div>
       </Suspense>
