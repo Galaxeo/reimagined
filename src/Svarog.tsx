@@ -31,11 +31,12 @@ export default function Svarog() {
           gap: 10,
         }}
       >
-        <h1>
+        <h1 className="middleLogo">
           Svarog
         </h1>
-        <p style={{ textAlign: "center", width: "35%" }}>a selfish study tool combining the latest technology to boost focus, strengthen memory, and build lasting study endurance</p>
-        <p>Closed Beta | Early 2025</p>
+        <p className={"middleLogo"} style={{ textAlign: "center", width: "30%" }}>a study tool combining modern studying methods and the latest technology to boost focus, strengthen memory, and build lasting study endurance</p>
+        <p className="middleLogo">Closed Beta | Early 2025</p>
+        <p className={"middleLogo", "workInfoClose"} onClick={() => {navigate("/")}}>back</p>
       </div >
     </>
   )
