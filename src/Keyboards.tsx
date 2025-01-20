@@ -119,11 +119,16 @@ const keyboardDescriptions = [
     switches: "Aflion Melody",
     keycaps: "-",
   },
+  {
+    title: "Mode Envoy",
+    switches: "Boba U4 Silent",
+    keycaps: "NicePBT Growth (Auxo)"
+  },
 ];
 
 function Scene() {
   const imagePaths = Array.from(
-    { length: 20 },
+    { length: 21 },
     (_, i) => `/assets/Keyboards/${i + 1}.webp`
   );
   const [selectedImage, setSelectedImage] = useState(null);
