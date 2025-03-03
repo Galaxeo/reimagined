@@ -46,7 +46,7 @@ function Overlay({ handleCurrentPage }) {
   const menuItemClass = (itemName: string) =>
     itemName === expandedItem ? "scaled" : "";
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   return (
     <>
@@ -168,9 +168,9 @@ function App() {
               <h1 ref={title} className="middleLogo">
                 cheok.works
               </h1>
-              <h3 ref={subtitle} className="middleLogo">
-                working on <a onClick={navigateToSvarog}>svarog</a>
-              </h3>
+              {/* <h3 ref={subtitle} className="middleLogo"> */}
+              {/*   working on <a onClick={navigateToSvarog}>svarog</a> */}
+              {/* </h3> */}
             </>
           )}
         </div>
