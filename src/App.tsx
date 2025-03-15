@@ -133,8 +133,9 @@ function App() {
     if (title.current != null) {
       const titleEle = title.current as HTMLElement;
       titleEle.classList.add("deleting");
-      const subtitleEle = subtitle.current as HTMLElement;
-      subtitleEle.classList.add("deleting");
+      // uncomment for svarog
+      // const subtitleEle = subtitle.current as HTMLElement;
+      // subtitleEle.classList.add("deleting");
     }
     setCurrentPage(page);
   }
