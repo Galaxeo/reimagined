@@ -2,6 +2,7 @@
 import { Suspense, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./App.css";
+// revise
 export default function Svarog() {
   const navigate = useNavigate();
   return (
@@ -36,7 +37,7 @@ export default function Svarog() {
         </h1>
         <p className={"middleLogo"} style={{ textAlign: "center", width: "30%" }}>a study tool combining modern studying methods and the latest technology to boost focus, strengthen memory, and build lasting study endurance</p>
         <p className="middleLogo">Closed Beta | Early 2025</p>
-        <p className={"middleLogo", "workInfoClose"} onClick={() => {navigate("/")}}>back</p>
+        <p className={"middleLogo", "workInfoClose"} onClick={() => { navigate("/") }}>back</p>
       </div >
     </>
   )
