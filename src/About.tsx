@@ -24,8 +24,7 @@ function About() {
           }}
         >
           <p>
-            Full-stack developer based in the Bay Area, CA, currently working as
-            a contractor/freelance software engineer.{" "}
+            Full-stack developer based in the Bay Area, CA.
           </p>
           <p>
             Passionate about full-stack development and daily improvement.
