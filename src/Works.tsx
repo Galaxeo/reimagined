@@ -103,9 +103,9 @@ function Works() {
     <>
       <div
         className="worksInfoLayer"
-        onClick={() => {
-          handleSelectedImage(null);
-        }}
+      // onClick={() => {
+      //   handleSelectedImage(null);
+      // }}
       >
         {selectedImage != null && (
           <>
