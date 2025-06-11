@@ -27,7 +27,7 @@ function About() {
             Full-stack developer based in the Bay Area, CA.
           </p>
           <p>
-            Passionate about full-stack development and daily improvement.
+            Completing a Master of Computer Science at UIUC and currently a Research Associate at the Digital Learning Lab @ UCI.
           </p>
           <p>Building keyboards, badminton, & weightlifting on the side.</p>
         </div>
