@@ -140,9 +140,9 @@ function Scene() {
     <>
       <div
         className="kbInfoLayer"
-        onClick={() => {
-          handleSelectedImage(null);
-        }}
+      // onClick={() => {
+      //   handleSelectedImage(null);
+      // }}
       >
         {selectedImage != null && selectedImage == "commissions" && (
           <>
