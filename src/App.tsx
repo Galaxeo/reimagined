@@ -144,6 +144,10 @@ function App() {
     console.log("navigating to svarog");
     navigate("/svarog");
   }
+  function navigateToBadminton() {
+    console.log("navigating to badminton");
+    navigate("/badminton");
+  }
 
   return (
     <>
