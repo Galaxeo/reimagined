@@ -1,7 +1,13 @@
 import "./App.css";
 import icon from "/assets/icon.png";
+import { useNavigate } from "react-router-dom";
 
 function About() {
+  const navigate = useNavigate();
+  function navigateToBadminton() {
+    console.log("navigating to badminton");
+    navigate("/badminton");
+  }
   return (
     <>
       <div className="about">
@@ -23,13 +29,16 @@ function About() {
             gap: "5px",
           }}
         >
+          <p>Full-stack developer based in the Bay Area, CA.</p>
           <p>
-            Full-stack developer based in the Bay Area, CA.
+            Completing a Master of Computer Science at UIUC and currently a
+            Research Associate at the Digital Learning Lab @ UCI.
           </p>
           <p>
-            Completing a Master of Computer Science at UIUC and currently a Research Associate at the Digital Learning Lab @ UCI.
+            Building keyboards,{" "}
+            <span onClick={navigateToBadminton}>badminton</span>, &
+            weightlifting on the side.
           </p>
-          <p>Building keyboards, badminton, & weightlifting on the side.</p>
         </div>
         <h2 style={{ fontSize: "1.5rem" }}>Contact</h2>
         <div
