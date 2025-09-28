@@ -1,5 +1,5 @@
-import { Suspense, useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 export default function Badminton() {
   const navigate = useNavigate();
