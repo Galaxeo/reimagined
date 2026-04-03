@@ -31,13 +31,11 @@ function About() {
         >
           <p>Full-stack developer based in the Bay Area, CA.</p>
           <p>
-            Completing a Master of Computer Science at UIUC and currently a
-            Research Associate at the Digital Learning Lab @ UCI.
+            Completing a Master of Computer Science at UIUC and currently a Research Associate at the Digital Learning
+            Lab @ UCI.
           </p>
           <p>
-            Building keyboards,{" "}
-            <span onClick={navigateToBadminton}>badminton</span>, &
-            weightlifting on the side.
+            Building keyboards, <span onClick={navigateToBadminton}>badminton</span>, & weightlifting on the side.
           </p>
         </div>
         <h2 style={{ fontSize: "1.5rem" }}>Contact</h2>
@@ -52,22 +50,14 @@ function About() {
           <p>Email: hwjustincheok@gmail.com</p>
         </div>
         <div className="aboutLinks">
-          <a
-            href="https://github.com/Galaxeo"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a href="https://github.com/Galaxeo" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
-          <a
-            href="https://www.linkedin.com/in/jhcheok/"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a href="https://www.linkedin.com/in/jhcheok/" target="_blank" rel="noreferrer noopener">
             LinkedIn
           </a>
           <a
-            href="https://drive.google.com/file/d/1fGCB5FFyC5KfOgfuT9GEPKRLoo1vhj_C/view?usp=sharing"
+            href="https://drive.google.com/file/d/1ruBMpq06NN1lkmKuMDuX4M0W1sTwDbkr/view?usp=sharing"
             target="_blank"
             rel="noreferrer noopener"
           >

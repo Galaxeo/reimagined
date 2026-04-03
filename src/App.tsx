@@ -10,14 +10,8 @@ import { grid } from "ldrs";
 grid.register();
 
 function Overlay({ handleCurrentPage }) {
-  const keybPaths = Array.from(
-    { length: 20 },
-    (_, i) => `/assets/Keyboards/${i + 1}.webp`
-  );
-  const workPaths = Array.from(
-    { length: 12 },
-    (_, i) => `/assets/Works/${i + 1}.webp`
-  );
+  const keybPaths = Array.from({ length: 20 }, (_, i) => `/assets/Keyboards/${i + 1}.webp`);
+  const workPaths = Array.from({ length: 12 }, (_, i) => `/assets/Works/${i + 1}.webp`);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [menuWidth, setMenuWidth] = useState(300);
   const ref = useRef(null);
@@ -32,10 +26,10 @@ function Overlay({ handleCurrentPage }) {
       if (itemName === "about") {
         menu.style.gridTemplateColumns = "2fr 1fr 1fr";
       }
-      if (itemName === "keyboards") {
+      if (itemName === "works") {
         menu.style.gridTemplateColumns = "1fr 2fr 1fr";
       }
-      if (itemName === "works") {
+      if (itemName === "keyboards") {
         menu.style.gridTemplateColumns = "1fr 1fr 2fr";
       }
       setExpandedItem(itemName);
@@ -43,10 +37,9 @@ function Overlay({ handleCurrentPage }) {
     }
   };
   // function to add className to element
-  const menuItemClass = (itemName: string) =>
-    itemName === expandedItem ? "scaled" : "";
+  const menuItemClass = (itemName: string) => (itemName === expandedItem ? "scaled" : "");
 
-  useEffect(() => { });
+  useEffect(() => {});
 
   return (
     <>
@@ -88,20 +81,6 @@ function Overlay({ handleCurrentPage }) {
             about
           </p>
           <p
-            className={menuItemClass("keyboards")}
-            onMouseOver={() => {
-              handleExpandedItem("keyboards");
-            }}
-            onMouseOut={() => {
-              handleExpandedItem("");
-            }}
-            onClick={() => {
-              handleCurrentPage("keyboards");
-            }}
-          >
-            keyboards
-          </p>
-          <p
             className={menuItemClass("works")}
             onMouseOver={() => {
               handleExpandedItem("works");
@@ -114,6 +93,20 @@ function Overlay({ handleCurrentPage }) {
             }}
           >
             works
+          </p>
+          <p
+            className={menuItemClass("keyboards")}
+            onMouseOver={() => {
+              handleExpandedItem("keyboards");
+            }}
+            onMouseOut={() => {
+              handleExpandedItem("");
+            }}
+            onClick={() => {
+              handleCurrentPage("keyboards");
+            }}
+          >
+            keyboards
           </p>
         </div>
       </div>
@@ -151,9 +144,7 @@ function App() {
 
   return (
     <>
-      <Suspense
-        fallback={<l-grid size="60" speed="1.5" color="black"></l-grid>}
-      >
+      <Suspense fallback={<l-grid size="60" speed="1.5" color="black"></l-grid>}>
         <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
         <div
           style={{
