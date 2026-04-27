@@ -1,15 +1,14 @@
 import "./App.css";
 import headshot from "/assets/headshot.jpg";
-import { useNavigate } from "react-router-dom";
 import { Github, Linkedin, FileText, Mail } from "lucide-react";
 
 const researchInterests = ["Educational Technology", "Human-Computer Interaction", "Learning Sciences"];
 
 function About() {
-  const navigate = useNavigate();
-  function navigateToBadminton() {
-    navigate("/badminton");
-  }
+  // const navigate = useNavigate();
+  // function navigateToBadminton() {
+  //   navigate("/badminton");
+  // }
   return (
     <>
       <div className="about">
