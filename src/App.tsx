@@ -9,11 +9,11 @@ import { grid } from "ldrs";
 
 grid.register();
 
-function Overlay({ handleCurrentPage }) {
+function Overlay({ handleCurrentPage, currentPage }) {
   const keybPaths = Array.from({ length: 20 }, (_, i) => `/assets/Keyboards/${i + 1}.webp`);
   const workPaths = Array.from({ length: 12 }, (_, i) => `/assets/Works/${i + 1}.webp`);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  const [menuWidth, setMenuWidth] = useState(300);
+  const [menuWidth, setMenuWidth] = useState(100);
   const ref = useRef(null);
 
   const handleExpandedItem = (itemName: string) => {
@@ -64,7 +64,7 @@ function Overlay({ handleCurrentPage }) {
       <div>
         <div ref={ref} className="topMenu" style={{ width: `${menuWidth}px` }}>
           <p
-            className={menuItemClass("about")}
+            className={`${menuItemClass("about")}${currentPage === "about" ? " active" : ""}`}
             onMouseOver={() => {
               handleExpandedItem("about");
             }}
@@ -78,7 +78,7 @@ function Overlay({ handleCurrentPage }) {
             cheok
           </p>
           <p
-            className={menuItemClass("works")}
+            className={`${menuItemClass("works")}${currentPage === "works" ? " active" : ""}`}
             onMouseOver={() => {
               handleExpandedItem("works");
             }}
@@ -98,7 +98,7 @@ function Overlay({ handleCurrentPage }) {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState("about");
   const title = useRef(null);
   const subtitle = useRef(null);
 
@@ -128,7 +128,7 @@ function App() {
   return (
     <>
       <Suspense fallback={<l-grid size="60" speed="1.5" color="black"></l-grid>}>
-        <Overlay handleCurrentPage={handleCurrentPage}></Overlay>
+        <Overlay handleCurrentPage={handleCurrentPage} currentPage={currentPage}></Overlay>
         <div
           style={{
             marginTop: "10vh",

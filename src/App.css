@@ -255,17 +255,40 @@ body,
   top: 90%;
   height: 10%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   transition: grid-template-columns 0.2s ease-in-out;
   z-index: 3;
 }
+@keyframes dot-appear {
+  from {
+    transform: translateX(-50%) scale(0);
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
 /*Each p element within the menu on highlight will turn white, clickable hover*/
 .topMenu p {
   color: darkgrey;
   text-align: center;
+  position: relative;
 }
+.topMenu p.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  filter: brightness(0.75);
+  animation: dot-appear 0.2s ease-out forwards;
+}
+
 .topMenu p:hover {
   color: white;
   cursor: pointer;
