@@ -20,20 +20,17 @@ function Overlay({ handleCurrentPage }) {
     const menu = ref.current as HTMLElement;
     if (expandedItem === itemName || itemName === "") {
       setExpandedItem(null);
-      setMenuWidth(300);
-      menu.style.gridTemplateColumns = "1fr 1fr 1fr";
+      setMenuWidth(100);
+      menu.style.gridTemplateColumns = "1fr 1fr";
     } else {
       if (itemName === "about") {
-        menu.style.gridTemplateColumns = "2fr 1fr 1fr";
+        menu.style.gridTemplateColumns = "2fr 1fr";
       }
       if (itemName === "works") {
-        menu.style.gridTemplateColumns = "1fr 2fr 1fr";
-      }
-      if (itemName === "keyboards") {
-        menu.style.gridTemplateColumns = "1fr 1fr 2fr";
+        menu.style.gridTemplateColumns = "1fr 2fr";
       }
       setExpandedItem(itemName);
-      setMenuWidth(325);
+      setMenuWidth(125);
     }
   };
   // function to add className to element
@@ -78,7 +75,7 @@ function Overlay({ handleCurrentPage }) {
               handleCurrentPage("about");
             }}
           >
-            about
+            cheok
           </p>
           <p
             className={menuItemClass("works")}
@@ -93,20 +90,6 @@ function Overlay({ handleCurrentPage }) {
             }}
           >
             works
-          </p>
-          <p
-            className={menuItemClass("keyboards")}
-            onMouseOver={() => {
-              handleExpandedItem("keyboards");
-            }}
-            onMouseOut={() => {
-              handleExpandedItem("");
-            }}
-            onClick={() => {
-              handleCurrentPage("keyboards");
-            }}
-          >
-            keyboards
           </p>
         </div>
       </div>

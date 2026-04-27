@@ -12,8 +12,7 @@ const workDescriptions = [
   {
     title: "Futoshiki Solver",
     tools: "Python",
-    description:
-      "A Python program that solves Futoshiki puzzles using a backtracking & forward checking algorithm.",
+    description: "A Python program that solves Futoshiki puzzles using a backtracking & forward checking algorithm.",
     link: "https://github.com/Galaxeo/futoshiki",
   },
   {
@@ -69,31 +68,25 @@ const workDescriptions = [
   {
     title: "The Odin Project repository",
     tools: "HTML, CSS, JavaScript, React",
-    description:
-      "A repository of all the projects I've completed from The Odin Project's full stack curriculum.",
+    description: "A repository of all the projects I've completed from The Odin Project's full stack curriculum.",
     link: "https://github.com/Galaxeo/odin",
   },
   {
     title: "3D Portfolio",
     tools: "React, Vite, Three.js (React-Three-Fiber)",
-    description:
-      "A 3D iteration of my portfolio, made to be interactive and visually appealing.",
+    description: "A 3D iteration of my portfolio, made to be interactive and visually appealing.",
     link: "https://github.com/Galaxeo/3d-gallery",
     demo: "https://nimble-daffodil-21602f.netlify.app/",
   },
   {
     title: "Portfolio (Version 2.0)",
     tools: "React, Vite, TypeScript, CSS, HTML",
-    description:
-      "The second version of my personal website, built using React, Vite, and TypeScript.",
+    description: "The second version of my personal website, built using React, Vite, and TypeScript.",
     link: "https://github.com/Galaxeo/reimagined",
   },
 ];
 function Works() {
-  const imagePaths = Array.from(
-    { length: 12 },
-    (_, i) => `/assets/Works/${i + 1}.webp`
-  );
+  const imagePaths = Array.from({ length: 12 }, (_, i) => `/assets/Works/${i + 1}.webp`);
   const [selectedImage, setSelectedImage] = useState(null);
   const handleSelectedImage = (i) => {
     setSelectedImage(i);
@@ -103,9 +96,9 @@ function Works() {
     <>
       <div
         className="worksInfoLayer"
-      // onClick={() => {
-      //   handleSelectedImage(null);
-      // }}
+        // onClick={() => {
+        //   handleSelectedImage(null);
+        // }}
       >
         {selectedImage != null && (
           <>
@@ -113,27 +106,17 @@ function Works() {
               <img className="workImg" src={imagePaths[selectedImage]}></img>
               <div className="workDesc">
                 <p style={{ fontSize: ".75rem", color: "grey" }}>Project</p>
-                <p style={{ fontSize: "1.5rem" }}>
-                  {workDescriptions[selectedImage].title}
-                </p>
+                <p style={{ fontSize: "1.5rem" }}>{workDescriptions[selectedImage].title}</p>
                 <p style={{ fontSize: ".75rem", color: "grey" }}>Tools</p>
                 <p>{workDescriptions[selectedImage].tools}</p>
                 <p style={{ fontSize: ".75rem", color: "grey" }}>Description</p>
                 <p>{workDescriptions[selectedImage].description}</p>
                 <div className="workHelpers">
-                  <a
-                    href={workDescriptions[selectedImage].link}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
+                  <a href={workDescriptions[selectedImage].link} target="_blank" rel="noreferrer noopener">
                     Repo
                   </a>
                   {workDescriptions[selectedImage].demo && (
-                    <a
-                      href={workDescriptions[selectedImage].demo}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
+                    <a href={workDescriptions[selectedImage].demo} target="_blank" rel="noreferrer noopener">
                       Demo
                     </a>
                   )}
@@ -167,12 +150,7 @@ function Works() {
             );
           })}
         </div>
-        <a
-          className="kbCommissions"
-          href={"https://github.com/galaxeo"}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
+        <a className="kbCommissions" href={"https://github.com/galaxeo"} target="_blank" rel="noreferrer noopener">
           github
         </a>
       </div>

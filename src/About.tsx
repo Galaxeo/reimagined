@@ -1,5 +1,6 @@
 import "./App.css";
-import icon from "/assets/icon.png";
+// import icon from "/assets/icon.png";
+import headshot from "/assets/headshot.jpg";
 import { useNavigate } from "react-router-dom";
 
 function About() {
@@ -14,11 +15,11 @@ function About() {
         {/* <h1 ref={title}>About</h1> */}
         <p style={{ fontSize: "1.75rem" }}>Hi, I'm Justin!</p>
         <img
-          src={icon}
+          src={headshot}
           style={{
-            height: "125px",
-            borderRadius: "3%",
-            // border: "1px solid white",
+            height: "150px",
+            borderRadius: "50%",
+            border: "1px solid white",
           }}
         ></img>
         <div
