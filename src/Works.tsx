@@ -25,6 +25,16 @@ const featuredWorks = [
       { label: "GitHub", href: "https://github.com/UCI-DLL/PapyrusAI" },
     ],
   },
+  {
+    title: "wav2sleep · PyHealth",
+    subtitle: "Sleep Stage Classification from Waveforms",
+    type: "Open Source",
+    venue: "PyHealth · UIUC",
+    tools: ["Python", "PyTorch", "PyHealth"],
+    description:
+      "Implemented wav2sleep into PyHealth, an open-source clinical ML library. wav2sleep is a unified sleep staging model that jointly trains across heterogeneous polysomnography datasets, supporting cardio-respiratory (ECG, PPG, respiratory) and neural (EOG) modalities with variable signal availability at test-time.",
+    links: [{ label: "GitHub", href: "https://github.com/Galaxeo/PyHealth-proj" }],
+  },
 ];
 
 function Works() {

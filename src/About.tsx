@@ -1,6 +1,7 @@
 import "./App.css";
 import headshot from "/assets/headshot.jpg";
 import { useNavigate } from "react-router-dom";
+import { Github, Linkedin, FileText, Mail } from "lucide-react";
 
 const researchInterests = ["Educational Technology", "Human-Computer Interaction", "Learning Sciences"];
 
@@ -32,8 +33,8 @@ function About() {
         <p
           style={{ lineHeight: "1.7", color: "darkgrey", fontSize: "0.85rem", maxWidth: "380px", textAlign: "center" }}
         >
-          I build and study tools at the intersection of computing and education. My work focuses on how digital systems
-          can better support and evaluate learning and human cognition.
+          I build and study tools at the intersection of computing and education. My work focuses on how technology can
+          better support and evaluate learning and human cognition.
         </p>
 
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center" }}>
@@ -54,32 +55,30 @@ function About() {
         </div>
 
         <div className="aboutLinks">
-          <a href="https://github.com/Galaxeo" target="_blank" rel="noreferrer noopener">
-            GitHub
-          </a>
-          <span className="aboutLinkDot">·</span>
-          <a href="https://www.linkedin.com/in/jhcheok/" target="_blank" rel="noreferrer noopener">
-            LinkedIn
-          </a>
-          <span className="aboutLinkDot">·</span>
-          <a
-            href="https://drive.google.com/file/d/1ruBMpq06NN1lkmKuMDuX4M0W1sTwDbkr/view?usp=sharing"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            CV
-          </a>
-          <span className="aboutLinkDot">·</span>
-          <a href="mailto:hwjustincheok@gmail.com">Email</a>
+          {[
+            { icon: <Github size={16} />, label: "GitHub", href: "https://github.com/Galaxeo", target: "_blank" },
+            {
+              icon: <Linkedin size={16} />,
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/jhcheok/",
+              target: "_blank",
+            },
+            {
+              icon: <FileText size={16} />,
+              label: "Resume",
+              href: "https://drive.google.com/file/d/1ruBMpq06NN1lkmKuMDuX4M0W1sTwDbkr/view?usp=sharing",
+              target: "_blank",
+            },
+            { icon: <Mail size={16} />, label: "Email", href: "mailto:hwjustincheok@gmail.com", target: undefined },
+          ].map(({ icon, label, href, target }) => (
+            <div key={label} className="aboutIconLink">
+              <a href={href} target={target} rel={target ? "noreferrer noopener" : undefined}>
+                {icon}
+              </a>
+              <span className="aboutIconLabel">{label}</span>
+            </div>
+          ))}
         </div>
-
-        <p style={{ fontSize: "0.72rem", color: "darkgrey", letterSpacing: "0.03em" }}>
-          keyboards &nbsp;·&nbsp;{" "}
-          <span onClick={navigateToBadminton} style={{ cursor: "pointer" }}>
-            badminton
-          </span>
-          &nbsp;·&nbsp; weightlifting
-        </p>
       </div>
     </>
   );
