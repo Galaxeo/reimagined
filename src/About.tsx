@@ -57,9 +57,11 @@ function About() {
           <a href="https://github.com/Galaxeo" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
+          <span className="aboutLinkDot">·</span>
           <a href="https://www.linkedin.com/in/jhcheok/" target="_blank" rel="noreferrer noopener">
             LinkedIn
           </a>
+          <span className="aboutLinkDot">·</span>
           <a
             href="https://drive.google.com/file/d/1ruBMpq06NN1lkmKuMDuX4M0W1sTwDbkr/view?usp=sharing"
             target="_blank"
@@ -67,6 +69,7 @@ function About() {
           >
             CV
           </a>
+          <span className="aboutLinkDot">·</span>
           <a href="mailto:hwjustincheok@gmail.com">Email</a>
         </div>
 
