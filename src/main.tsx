@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import Notes from "./Notes.tsx";
 import Svarog from "./Svarog.tsx";
 import Badminton from "./Badminton.tsx";
+import Timer from "./Timer.tsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import "./App.css";
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/badminton" element={<Badminton />} />
+        <Route path="/timer" element={<Timer />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/svarog" element={<Svarog />} />
       </Routes>
