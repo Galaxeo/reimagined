@@ -9,11 +9,20 @@ const BEEPS = [
   { at: 17, freq: 1031, repeatEvery: 1000 },
 ];
 
+const DOUBLE_TAP_MS = 300;
+
+type ControlMode = "toggle" | "doubleTap";
+type FinalBeep = "keepGoing" | "threeTimes";
+
+const FINAL_BEEP_COUNT = 3;
+
 export default function Timer() {
   const navigate = useNavigate();
   const [isRunning, setIsRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [isFlashing, setIsFlashing] = useState(false);
+  const [controlMode, setControlMode] = useState<ControlMode>("toggle");
+  const [finalBeep, setFinalBeep] = useState<FinalBeep>("keepGoing");
 
   const startRef = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
@@ -21,6 +30,14 @@ export default function Timer() {
   const audioRef = useRef<AudioContext | null>(null);
   const flashTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const repeatRef = useRef<NodeJS.Timeout | null>(null);
+  // mirrored in refs so the key listener never has to be torn down and re-bound
+  const isRunningRef = useRef(false);
+  const controlModeRef = useRef<ControlMode>(controlMode);
+  const lastSpaceRef = useRef(0);
+  const finalBeepRef = useRef<FinalBeep>(finalBeep);
+
+  controlModeRef.current = controlMode;
+  finalBeepRef.current = finalBeep;
 
   function clearRepeat() {
     if (repeatRef.current) {
@@ -84,7 +101,14 @@ export default function Timer() {
         beep(freq);
         if (repeatEvery) {
           clearRepeat();
-          repeatRef.current = setInterval(() => beep(freq), repeatEvery);
+          let rings = 1; // the one that just sounded
+          repeatRef.current = setInterval(() => {
+            beep(freq);
+            rings += 1;
+            if (finalBeepRef.current === "threeTimes" && rings >= FINAL_BEEP_COUNT) {
+              clearRepeat();
+            }
+          }, repeatEvery);
         }
       }
     }
@@ -98,6 +122,7 @@ export default function Timer() {
     startRef.current = performance.now();
     setElapsed(0);
     setIsRunning(true);
+    isRunningRef.current = true;
     rafRef.current = requestAnimationFrame(tick);
   }, [tick]);
 
@@ -108,17 +133,34 @@ export default function Timer() {
       rafRef.current = null;
     }
     setIsRunning(false);
+    isRunningRef.current = false;
   }, []);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.code !== "Space") return;
       e.preventDefault();
-      start();
+      if (e.repeat) return; // holding space shouldn't machine-gun restarts
+
+      if (controlModeRef.current === "toggle") {
+        isRunningRef.current ? stop() : start();
+        return;
+      }
+
+      // doubleTap: a single tap always (re)starts, two quick taps stop
+      const now = performance.now();
+      const isDoubleTap = now - lastSpaceRef.current < DOUBLE_TAP_MS;
+      lastSpaceRef.current = isDoubleTap ? 0 : now;
+      if (isDoubleTap) {
+        stop();
+        setElapsed(0);
+      } else {
+        start();
+      }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [start]);
+  }, [start, stop]);
 
   useEffect(() => {
     return () => {
@@ -181,8 +223,41 @@ export default function Timer() {
           {isRunning ? "stop" : "start"}
         </p>
         <p className="middleLogo" style={{ fontSize: "13px", opacity: 0.6 }}>
-          press space to start / restart
+          {controlMode === "toggle"
+            ? "space starts / stops \u2014 space again restarts"
+            : "space starts / restarts \u2014 double tap space to stop"}
         </p>
+
+        <div style={{ marginTop: "20px" }}>
+          <select
+            value={controlMode}
+            onChange={(e) => setControlMode(e.target.value as ControlMode)}
+            style={{
+              padding: "8px 12px",
+              fontSize: "16px",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            <option value="toggle">space toggles</option>
+            <option value="doubleTap">double tap to stop</option>
+          </select>
+
+          <select
+            value={finalBeep}
+            onChange={(e) => setFinalBeep(e.target.value as FinalBeep)}
+            style={{
+              padding: "8px 12px",
+              fontSize: "16px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              marginLeft: "10px",
+            }}
+          >
+            <option value="keepGoing">17s beep keeps going</option>
+            <option value="threeTimes">17s beep x3</option>
+          </select>
+        </div>
       </div>
     </>
   );
