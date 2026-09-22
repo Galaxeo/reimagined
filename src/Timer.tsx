@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Settings } from "lucide-react";
 import "./App.css";
 
 const BEEPS = [
@@ -16,13 +17,21 @@ type FinalBeep = "keepGoing" | "threeTimes";
 
 const FINAL_BEEP_COUNT = 3;
 
+const selectStyle = {
+  padding: "6px 10px",
+  fontSize: "14px",
+  borderRadius: "4px",
+  cursor: "pointer",
+} as const;
+
 export default function Timer() {
   const navigate = useNavigate();
   const [isRunning, setIsRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [isFlashing, setIsFlashing] = useState(false);
   const [controlMode, setControlMode] = useState<ControlMode>("toggle");
-  const [finalBeep, setFinalBeep] = useState<FinalBeep>("keepGoing");
+  const [finalBeep, setFinalBeep] = useState<FinalBeep>("threeTimes");
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const startRef = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
@@ -92,23 +101,46 @@ export default function Timer() {
     flashTimeoutRef.current = setTimeout(() => setIsFlashing(false), 300);
   }
 
+  function armRepeat(freq: number, everyMs: number) {
+    clearRepeat();
+    beep(freq);
+    let rings = 1;
+    repeatRef.current = setInterval(() => {
+      beep(freq);
+      rings += 1;
+      if (finalBeepRef.current === "threeTimes" && rings >= FINAL_BEEP_COUNT) {
+        clearRepeat();
+      }
+    }, everyMs);
+  }
+
+  // arrow keys nudge the clock; the beeps re-arm so they match the new time
+  function seek(deltaMs: number) {
+    if (!isRunningRef.current) return;
+    const now = performance.now();
+    startRef.current = Math.min(startRef.current - deltaMs, now);
+    const seconds = (now - startRef.current) / 1000;
+    setElapsed(seconds);
+
+    beepedRef.current = BEEPS.filter((b) => seconds >= b.at).map((b) => b.at);
+    const ringing = BEEPS.find((b) => b.repeatEvery && seconds >= b.at);
+    if (ringing?.repeatEvery) {
+      if (!repeatRef.current) armRepeat(ringing.freq, ringing.repeatEvery);
+    } else {
+      clearRepeat();
+    }
+  }
+
   const tick = useCallback(() => {
     const seconds = (performance.now() - startRef.current) / 1000;
     setElapsed(seconds);
     for (const { at, freq, repeatEvery } of BEEPS) {
       if (seconds >= at && !beepedRef.current.includes(at)) {
         beepedRef.current.push(at);
-        beep(freq);
         if (repeatEvery) {
-          clearRepeat();
-          let rings = 1; // the one that just sounded
-          repeatRef.current = setInterval(() => {
-            beep(freq);
-            rings += 1;
-            if (finalBeepRef.current === "threeTimes" && rings >= FINAL_BEEP_COUNT) {
-              clearRepeat();
-            }
-          }, repeatEvery);
+          armRepeat(freq, repeatEvery);
+        } else {
+          beep(freq);
         }
       }
     }
@@ -138,6 +170,11 @@ export default function Timer() {
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
+      if (e.code === "ArrowLeft" || e.code === "ArrowRight") {
+        e.preventDefault();
+        seek(e.code === "ArrowRight" ? 1000 : -1000);
+        return;
+      }
       if (e.code !== "Space") return;
       e.preventDefault();
       if (e.repeat) return; // holding space shouldn't machine-gun restarts
@@ -189,6 +226,69 @@ export default function Timer() {
       </div>
       <div
         style={{
+          position: "absolute",
+          top: 30,
+          right: 30,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          gap: 12,
+          zIndex: 999,
+        }}
+      >
+        <Settings
+          size={18}
+          className="workInfoClose"
+          aria-label="settings"
+          onClick={(e) => {
+            setSettingsOpen((open) => !open);
+            e.currentTarget.blur();
+          }}
+          style={{
+            transform: settingsOpen ? "rotate(60deg)" : "none",
+            transition: "transform 0.2s ease-in-out",
+          }}
+        />
+
+        {settingsOpen && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+              padding: 12,
+              borderRadius: 4,
+              backgroundColor: "rgba(15, 15, 15, 0.8)",
+            }}
+          >
+            <select
+              value={controlMode}
+              onChange={(e) => {
+                setControlMode(e.target.value as ControlMode);
+                e.target.blur(); // otherwise space would reopen the dropdown
+              }}
+              style={selectStyle}
+            >
+              <option value="toggle">space toggles</option>
+              <option value="doubleTap">double tap to stop</option>
+            </select>
+
+            <select
+              value={finalBeep}
+              onChange={(e) => {
+                setFinalBeep(e.target.value as FinalBeep);
+                e.target.blur();
+              }}
+              style={selectStyle}
+            >
+              <option value="keepGoing">17s beep keeps going</option>
+              <option value="threeTimes">17s beep x3</option>
+            </select>
+          </div>
+        )}
+      </div>
+      <div
+        style={{
           marginTop: "10vh",
           display: "flex",
           alignItems: "center",
@@ -227,37 +327,9 @@ export default function Timer() {
             ? "space starts / stops \u2014 space again restarts"
             : "space starts / restarts \u2014 double tap space to stop"}
         </p>
-
-        <div style={{ marginTop: "20px" }}>
-          <select
-            value={controlMode}
-            onChange={(e) => setControlMode(e.target.value as ControlMode)}
-            style={{
-              padding: "8px 12px",
-              fontSize: "16px",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            <option value="toggle">space toggles</option>
-            <option value="doubleTap">double tap to stop</option>
-          </select>
-
-          <select
-            value={finalBeep}
-            onChange={(e) => setFinalBeep(e.target.value as FinalBeep)}
-            style={{
-              padding: "8px 12px",
-              fontSize: "16px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              marginLeft: "10px",
-            }}
-          >
-            <option value="keepGoing">17s beep keeps going</option>
-            <option value="threeTimes">17s beep x3</option>
-          </select>
-        </div>
+        <p className="middleLogo" style={{ fontSize: "13px", opacity: 0.6 }}>
+          {"\u2190 \u2192 nudge one second"}
+        </p>
       </div>
     </>
   );
