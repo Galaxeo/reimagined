@@ -3,14 +3,43 @@ import { useNavigate } from "react-router-dom";
 import { Settings } from "lucide-react";
 import "./App.css";
 
-const BEEPS = [
-  { at: 10, freq: 660 },
-  { at: 15, freq: 825 },
-  // the last one keeps ringing until the stopwatch is stopped or restarted
-  { at: 22, freq: 1031, repeatEvery: 1000 },
-];
+type Beep = { at: number; freq: number; repeatEvery?: number };
+type TimerMode = "e2e" | "pingPong";
+
+// each preset rings low -> high; the last mark repeats until stopped or capped
+const TIMER_MODES: Record<TimerMode, { label: string; beeps: Beep[] }> = {
+  e2e: {
+    label: "E2E",
+    beeps: [
+      { at: 10, freq: 660 },
+      { at: 15, freq: 825 },
+      { at: 22, freq: 1031, repeatEvery: 1000 },
+    ],
+  },
+  pingPong: {
+    label: "Diverse Ping-Pong",
+    beeps: [
+      { at: 3, freq: 660 },
+      { at: 10, freq: 825 },
+      { at: 17, freq: 1031, repeatEvery: 1000 },
+    ],
+  },
+};
 
 const DOUBLE_TAP_MS = 300;
+
+// an emote shows when the stopped clock reads exactly one of these
+const FUNNY_NUMBERS = [
+  { shown: "6.66", emote: "\ud83d\ude08 \ud83d\udd25" },
+  { shown: "4.20", emote: "\ud83c\udf3f \ud83d\udca8" },
+  { shown: "6.70", emote: "\ud83d\ude4c 6-7" },
+  { shown: "6.90", emote: "\ud83d\ude0f \ud83d\udc4c" },
+];
+
+function funnyNumberAt(seconds: number) {
+  const shown = seconds.toFixed(2); // match what the clock displays
+  return FUNNY_NUMBERS.find((funny) => funny.shown === shown) ?? null;
+}
 
 type ControlMode = "toggle" | "doubleTap";
 type FinalBeep = "keepGoing" | "threeTimes";
@@ -32,6 +61,8 @@ export default function Timer() {
   const [controlMode, setControlMode] = useState<ControlMode>("toggle");
   const [finalBeep, setFinalBeep] = useState<FinalBeep>("threeTimes");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [timerMode, setTimerMode] = useState<TimerMode>("e2e");
+  const [emote, setEmote] = useState<string | null>(null);
 
   const startRef = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
@@ -47,6 +78,11 @@ export default function Timer() {
 
   controlModeRef.current = controlMode;
   finalBeepRef.current = finalBeep;
+
+  const beeps = TIMER_MODES[timerMode].beeps;
+  const beepsRef = useRef<Beep[]>(beeps);
+  beepsRef.current = beeps;
+  const finalAt = beeps[beeps.length - 1].at;
 
   function clearRepeat() {
     if (repeatRef.current) {
@@ -122,8 +158,8 @@ export default function Timer() {
     const seconds = (now - startRef.current) / 1000;
     setElapsed(seconds);
 
-    beepedRef.current = BEEPS.filter((b) => seconds >= b.at).map((b) => b.at);
-    const ringing = BEEPS.find((b) => b.repeatEvery && seconds >= b.at);
+    beepedRef.current = beepsRef.current.filter((b) => seconds >= b.at).map((b) => b.at);
+    const ringing = beepsRef.current.find((b) => b.repeatEvery && seconds >= b.at);
     if (ringing?.repeatEvery) {
       if (!repeatRef.current) armRepeat(ringing.freq, ringing.repeatEvery);
     } else {
@@ -134,7 +170,7 @@ export default function Timer() {
   const tick = useCallback(() => {
     const seconds = (performance.now() - startRef.current) / 1000;
     setElapsed(seconds);
-    for (const { at, freq, repeatEvery } of BEEPS) {
+    for (const { at, freq, repeatEvery } of beepsRef.current) {
       if (seconds >= at && !beepedRef.current.includes(at)) {
         beepedRef.current.push(at);
         if (repeatEvery) {
@@ -153,6 +189,7 @@ export default function Timer() {
     beepedRef.current = [];
     startRef.current = performance.now();
     setElapsed(0);
+    setEmote(null);
     setIsRunning(true);
     isRunningRef.current = true;
     rafRef.current = requestAnimationFrame(tick);
@@ -167,7 +204,11 @@ export default function Timer() {
       rafRef.current = null;
     }
     if (isRunningRef.current) {
-      pausedAtRef.current = performance.now() - startRef.current;
+      const ms = performance.now() - startRef.current;
+      const hit = funnyNumberAt(ms / 1000);
+      if (hit) setEmote(hit.emote);
+      setElapsed(ms / 1000);
+      pausedAtRef.current = ms;
     }
     setIsRunning(false);
     isRunningRef.current = false;
@@ -178,13 +219,14 @@ export default function Timer() {
     clearRepeat();
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
   
+    setEmote(null);
     const now = performance.now();
     startRef.current = now - pausedAtRef.current; // continue from where we stopped
     const seconds = pausedAtRef.current / 1000;
   
     // re-arm beeps to match the restored time
-    beepedRef.current = BEEPS.filter((b) => seconds >= b.at).map((b) => b.at);
-    const ringing = BEEPS.find((b) => b.repeatEvery && seconds >= b.at);
+    beepedRef.current = beepsRef.current.filter((b) => seconds >= b.at).map((b) => b.at);
+    const ringing = beepsRef.current.find((b) => b.repeatEvery && seconds >= b.at);
     if (ringing?.repeatEvery) armRepeat(ringing.freq, ringing.repeatEvery);
   
     setIsRunning(true);
@@ -193,6 +235,11 @@ export default function Timer() {
   }, [tick]);
 
  
+
+  useEffect(() => {
+    // swapping presets mid-run re-arms the new marks against the current time
+    if (isRunningRef.current) seek(0);
+  }, [timerMode]);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -221,6 +268,7 @@ export default function Timer() {
       if (isDoubleTap) {
         stop();
         setElapsed(0);
+        setEmote(null);
       } else {
         start();
       }
@@ -304,6 +352,21 @@ export default function Timer() {
             </select>
 
             <select
+              value={timerMode}
+              onChange={(e) => {
+                setTimerMode(e.target.value as TimerMode);
+                e.target.blur();
+              }}
+              style={selectStyle}
+            >
+              {(Object.keys(TIMER_MODES) as TimerMode[]).map((mode) => (
+                <option key={mode} value={mode}>
+                  {TIMER_MODES[mode].label} ({TIMER_MODES[mode].beeps.map((b) => b.at).join(" / ")})
+                </option>
+              ))}
+            </select>
+
+            <select
               value={finalBeep}
               onChange={(e) => {
                 setFinalBeep(e.target.value as FinalBeep);
@@ -311,8 +374,8 @@ export default function Timer() {
               }}
               style={selectStyle}
             >
-              <option value="keepGoing">17s beep keeps going</option>
-              <option value="threeTimes">17s beep x3</option>
+              <option value="keepGoing">{finalAt}s beep keeps going</option>
+              <option value="threeTimes">{finalAt}s beep x3</option>
             </select>
           </div>
         )}
@@ -344,6 +407,11 @@ export default function Timer() {
         >
           {elapsed.toFixed(2)}
         </h1>
+        {emote && (
+          <p className="middleLogo" style={{ fontSize: "4vh", margin: 0, padding: 0 }}>
+            {emote}
+          </p>
+        )}
         <p
           className="middleLogo workInfoClose"
           onClick={() => {
