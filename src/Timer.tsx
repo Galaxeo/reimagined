@@ -168,11 +168,25 @@ export default function Timer() {
     isRunningRef.current = false;
   }, []);
 
+  const resume = useCallback(() => {
+  	clearRepeat();
+  	if (rafRef.current) {
+  		cancelAnimationFrame(rafRef.current);
+  	}
+  	setIsRunning(true);
+  	isRunningRef.current = true;
+  	rafRef.current = requestAnimationFrame(tick);
+  }, []);
+
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.code === "ArrowLeft" || e.code === "ArrowRight") {
         e.preventDefault();
         seek(e.code === "ArrowRight" ? 1000 : -1000);
+        return;
+      }
+      if (e.code === "KeyR") {
+        resume();
         return;
       }
       if (e.code !== "Space") return;
