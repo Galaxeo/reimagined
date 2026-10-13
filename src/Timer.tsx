@@ -4,10 +4,10 @@ import { Settings } from "lucide-react";
 import "./App.css";
 
 const BEEPS = [
-  { at: 3, freq: 660 },
-  { at: 10, freq: 825 },
+  { at: 10, freq: 660 },
+  { at: 15, freq: 825 },
   // the last one keeps ringing until the stopwatch is stopped or restarted
-  { at: 17, freq: 1031, repeatEvery: 1000 },
+  { at: 25, freq: 1031, repeatEvery: 1000 },
 ];
 
 const DOUBLE_TAP_MS = 300;
