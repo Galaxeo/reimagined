@@ -249,7 +249,8 @@ export default function Timer() {
         return;
       }
       if (e.code === "KeyR") {
-        resume();
+        if (e.repeat) return;
+        isRunningRef.current ? stop() : resume();
         return;
       }
       if (e.code !== "Space") return;
@@ -275,7 +276,7 @@ export default function Timer() {
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [start, stop]);
+  }, [start, stop, resume]);
 
   useEffect(() => {
     return () => {
@@ -426,7 +427,7 @@ export default function Timer() {
             : "space starts / restarts \u2014 double tap space to stop"}
         </p>
         <p className="middleLogo" style={{ fontSize: "13px", opacity: 0.6 }}>
-          {"\u2190 \u2192 nudge one second"}
+          {"\u2190 \u2192 nudge one second \u2014 r stops / resumes"}
         </p>
       </div>
     </>
