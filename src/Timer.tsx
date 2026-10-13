@@ -158,25 +158,41 @@ export default function Timer() {
     rafRef.current = requestAnimationFrame(tick);
   }, [tick]);
 
+  const pausedAtRef = useRef(0); // ms elapsed at the moment of stop
+
   const stop = useCallback(() => {
     clearRepeat();
     if (rafRef.current) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
+    if (isRunningRef.current) {
+      pausedAtRef.current = performance.now() - startRef.current;
+    }
     setIsRunning(false);
     isRunningRef.current = false;
   }, []);
-
+  
   const resume = useCallback(() => {
-  	clearRepeat();
-  	if (rafRef.current) {
-  		cancelAnimationFrame(rafRef.current);
-  	}
-  	setIsRunning(true);
-  	isRunningRef.current = true;
-  	rafRef.current = requestAnimationFrame(tick);
-  }, []);
+    if (isRunningRef.current || pausedAtRef.current <= 0) return; // nothing to resume
+    clearRepeat();
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  
+    const now = performance.now();
+    startRef.current = now - pausedAtRef.current; // continue from where we stopped
+    const seconds = pausedAtRef.current / 1000;
+  
+    // re-arm beeps to match the restored time
+    beepedRef.current = BEEPS.filter((b) => seconds >= b.at).map((b) => b.at);
+    const ringing = BEEPS.find((b) => b.repeatEvery && seconds >= b.at);
+    if (ringing?.repeatEvery) armRepeat(ringing.freq, ringing.repeatEvery);
+  
+    setIsRunning(true);
+    isRunningRef.current = true;
+    rafRef.current = requestAnimationFrame(tick);
+  }, [tick]);
+
+ 
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
