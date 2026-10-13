@@ -7,7 +7,7 @@ const BEEPS = [
   { at: 10, freq: 660 },
   { at: 15, freq: 825 },
   // the last one keeps ringing until the stopwatch is stopped or restarted
-  { at: 25, freq: 1031, repeatEvery: 1000 },
+  { at: 22, freq: 1031, repeatEvery: 1000 },
 ];
 
 const DOUBLE_TAP_MS = 300;
