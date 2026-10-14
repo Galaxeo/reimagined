@@ -28,6 +28,9 @@ const TIMER_MODES: Record<TimerMode, { label: string; beeps: Beep[] }> = {
 
 const DOUBLE_TAP_MS = 300;
 
+// a low bell when an E2E run is cut short, well below the 660Hz first mark
+const EARLY_STOP_FREQ = 330;
+
 // an emote shows when the stopped clock reads exactly one of these
 const FUNNY_NUMBERS = [
   { shown: "6.66", emote: "\ud83d\ude08 \ud83d\udd25" },
@@ -82,6 +85,8 @@ export default function Timer() {
   const beeps = TIMER_MODES[timerMode].beeps;
   const beepsRef = useRef<Beep[]>(beeps);
   beepsRef.current = beeps;
+  const timerModeRef = useRef<TimerMode>(timerMode);
+  timerModeRef.current = timerMode;
   const finalAt = beeps[beeps.length - 1].at;
 
   function clearRepeat() {
@@ -205,6 +210,12 @@ export default function Timer() {
     }
     if (isRunningRef.current) {
       const ms = performance.now() - startRef.current;
+
+      // E2E only: stopping before the first mark gets a low "too early" bell
+      if (timerModeRef.current === "e2e" && ms / 1000 < beepsRef.current[0].at) {
+        beep(EARLY_STOP_FREQ);
+      }
+
       const hit = funnyNumberAt(ms / 1000);
       if (hit) setEmote(hit.emote);
       setElapsed(ms / 1000);
